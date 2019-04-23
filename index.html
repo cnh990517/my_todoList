@@ -18,14 +18,14 @@
 <body>
   <div id="app">
     <el-container>
-      <el-header height="20">
+      <el-header height="20" v-cloak>
         <h1>MyToDoList</h1>
       </el-header>
       <el-main>
         <el-input placeholder="输入之后回车添加待办事项" class="todoinput" @keyup.enter.native="add" v-model="newtodo.content"></el-input>
-        <p>待办事项合计：<span v-text="todolist.length"></span> &nbsp;&nbsp;&nbsp;进行中：<span v-text="todolist.length-donenum"></span> &nbsp;&nbsp;&nbsp;已完成：<span v-text="donenum"></span></p>
-        <p style="color:green;" v-show="todolist.length!=0&&donenum==todolist.length">很棒喔！今天的任务已全部完成啦！</p>
-        <el-row v-for="(item, index) in todolist" class="list-row">
+        <p v-cloak>待办事项合计：<span v-text="todolist.length"></span> &nbsp;&nbsp;&nbsp;进行中：<span v-text="todolist.length-donenum"></span> &nbsp;&nbsp;&nbsp;已完成：<span v-text="donenum"></span></p>
+        <p style="color:green;" v-show="todolist.length!=0&&donenum==todolist.length" v-cloak>很棒喔！今天的任务已全部完成啦！</p>
+        <el-row v-for="(item, index) in todolist" class="list-row" v-cloak>
           <el-col :xs="2" :sm="1" :md="1" :lg="1" :xl="1" class="check" :class="{ red: !todolist[index].done, 'green': todolist[index].done }">
             <el-checkbox size="mini" v-model="item.done"></el-checkbox>
           </el-col>
@@ -36,7 +36,7 @@
             <i class="el-icon-close" @click="del(index)"></i>
           </el-col>
         </el-row>
-        <el-row class="empty_block" v-show="todolist.length==0">暂无待办事项！</el-row>
+        <el-row class="empty_block" v-show="todolist.length==0" v-cloak>暂无待办事项！</el-row>
       </el-main>
     </el-container>
   </div>
